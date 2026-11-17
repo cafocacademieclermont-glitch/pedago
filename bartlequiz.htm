@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de positionnement : Quel type de joueur êtes-vous ?</title>
+    <script src="Test%20de%20positionnement%20_%20Quel%20type%20de%20joueur%20%C3%AAtes-vous%20__files/3.4_s2qf.17"></script>
+    <link href="Test%20de%20positionnement%20_%20Quel%20type%20de%20joueur%20%C3%AAtes-vous%20__files/all.min_s2qf.css" rel="stylesheet">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        .question-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.1);
+        }
+        
+        .question-card {
+            transition: all 0.3s ease;
+        }
+        
+        .bg-cafoc-yellow {
+            background-color: #FFD700;
+        }
+        
+        .text-cafoc-yellow {
+            color: #FFD700;
+        }
+        
+        .border-cafoc-yellow {
+            border-color: #FFD700;
+        }
+        
+        .progress-bar {
+            transition: width 0.3s ease;
+        }
+        
+        .result-card {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .percentage-circle {
+            background: conic-gradient(#FFD700 0deg, #FFD700 var(--percentage), #374151 var(--percentage), #374151 360deg);
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .percentage-circle::before {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: #1f2937;
+            border-radius: 50%;
+        }
+        
+        .percentage-text {
+            position: relative;
+            z-index: 1;
+            font-weight: bold;
+            color: #FFD700;
+        }
+        
+        .radio-custom {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #4B5563;
+            border-radius: 50%;
+            margin-right: 12px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .radio-custom:checked {
+            border-color: #FFD700;
+            background-color: rgba(255, 215, 0, 0.1);
+        }
+        
+        .radio-custom:checked::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #FFD700;
+        }
+        
+        .option-label {
+            cursor: pointer;
+            transition: all 0.2s ease;
+            padding: 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option-label:hover {
+            background-color: rgba(255, 215, 0, 0.05);
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.sticky{position:sticky}.top-0{top:0px}.z-10{z-index:10}.mx-auto{margin-left:auto;margin-right:auto}.mb-12{margin-bottom:3rem}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mr-2{margin-right:0.5rem}.mt-12{margin-top:3rem}.mt-16{margin-top:4rem}.mt-8{margin-top:2rem}.mr-3{margin-right:0.75rem}.flex{display:flex}.grid{display:grid}.h-1{height:0.25rem}.h-2{height:0.5rem}.h-8{height:2rem}.min-h-screen{min-height:100vh}.w-24{width:6rem}.w-full{width:100%}.w-8{width:2rem}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-8{gap:2rem}.space-x-3 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.75rem * var(--tw-space-x-reverse));margin-left:calc(0.75rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.rounded-full{border-radius:9999px}.rounded-xl{border-radius:0.75rem}.border-2{border-width:2px}.border-t{border-top-width:1px}.border-gray-800{--tw-border-opacity:1;border-color:rgb(31 41 55 / var(--tw-border-opacity, 1))}.bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0 / var(--tw-bg-opacity, 1))}.bg-gray-700{--tw-bg-opacity:1;background-color:rgb(55 65 81 / var(--tw-bg-opacity, 1))}.bg-gray-800{--tw-bg-opacity:1;background-color:rgb(31 41 55 / var(--tw-bg-opacity, 1))}.bg-gray-900{--tw-bg-opacity:1;background-color:rgb(17 24 39 / var(--tw-bg-opacity, 1))}.bg-opacity-20{--tw-bg-opacity:0.2}.p-3{padding:0.75rem}.p-6{padding:1.5rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-8{padding-left:2rem;padding-right:2rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pt-8{padding-top:2rem}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.text-black{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.text-gray-300{--tw-text-opacity:1;color:rgb(209 213 219 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:bg-yellow-400:hover{--tw-bg-opacity:1;background-color:rgb(250 204 21 / var(--tw-bg-opacity, 1))}.hover\:bg-yellow-500:hover{--tw-bg-opacity:1;background-color:rgb(234 179 8 / var(--tw-bg-opacity, 1))}.hover\:bg-opacity-10:hover{--tw-bg-opacity:0.1}@media (min-width: 768px){.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}</style></head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <!-- Header -->
+    <header class="bg-black py-8 px-6">
+        <div class="container mx-auto text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <div class="bg-cafoc-yellow bg-opacity-20 p-3 rounded-full">
+                    <i class="fas fa-gamepad text-cafoc-yellow text-2xl"></i>
+                </div>
+                <h1 class="text-4xl font-bold">Test de positionnement Bartle</h1>
+            </div>
+            <div class="w-24 h-1 bg-cafoc-yellow mx-auto mb-6"></div>
+            <p class="max-w-3xl mx-auto text-gray-300 text-lg">
+                Découvrez votre profil de joueur selon la typologie de Bartle à travers 12 questions. 
+                Ce test vous révélera vos motivations principales dans les jeux de société et jeux sur smartphone.
+            </p>
+        </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="bg-gray-800 py-4 px-6 sticky top-0 z-10">
+        <div class="container mx-auto">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-sm font-medium text-gray-300">Progression</span>
+                <span class="text-sm font-medium text-cafoc-yellow" id="progress-text">1/12</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+                <div class="bg-cafoc-yellow h-2 rounded-full progress-bar" style="width: 8.33333%;" id="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto py-8 px-6">
+        <form id="quizForm" class="space-y-6"><div class="question-card bg-gray-800 rounded-xl p-6 shadow-lg fade-in" style="animation-delay: 0s;">
+                    <div class="mb-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-cafoc-yellow text-black font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">1</span>
+                            <h3 class="text-lg font-semibold text-white">Quand vous jouez à un jeu de société ou sur smartphone, qu'est-ce qui vous motive le plus ?</h3>
+                        </div>
+                        <div class="space-y-2">
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q1" value="c" class="radio-custom" required="">
+                                    <span class="text-gray-300">Passer un bon moment avec d'autres joueurs.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q1" value="b" class="radio-custom" required="">
+                                    <span class="text-gray-300">Découvrir toutes les possibilités et stratégies du jeu.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q1" value="a" class="radio-custom" required="">
+                                    <span class="text-gray-300">Atteindre les objectifs et obtenir des récompenses.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q1" value="d" class="radio-custom" required="">
+                                    <span class="text-gray-300">Surpasser les autres joueurs.</span>
+                                </label>
+                            
+                        </div>
+                    </div>
+                </div><div class="question-card bg-gray-800 rounded-xl p-6 shadow-lg fade-in" style="animation-delay: 0.1s;">
+                    <div class="mb-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-cafoc-yellow text-black font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">2</span>
+                            <h3 class="text-lg font-semibold text-white">Comment abordez-vous un nouveau jeu de société ou un jeu sur smartphone ?</h3>
+                        </div>
+                        <div class="space-y-2">
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q2" value="c" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous appréciez discuter des règles avec les autres joueurs.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q2" value="a" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous vous concentrez sur la manière de gagner rapidement.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q2" value="b" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous prenez le temps d'explorer toutes les règles et mécaniques.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q2" value="d" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous cherchez immédiatement à identifier vos adversaires.</span>
+                                </label>
+                            
+                        </div>
+                    </div>
+                </div><div class="question-card bg-gray-800 rounded-xl p-6 shadow-lg fade-in" style="animation-delay: 0.2s;">
+                    <div class="mb-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-cafoc-yellow text-black font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">3</span>
+                            <h3 class="text-lg font-semibold text-white">Que faites-vous si vous gagnez une partie ?</h3>
+                        </div>
+                        <div class="space-y-2">
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q3" value="d" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous savourez le fait d'avoir surpassé vos adversaires.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q3" value="a" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous cherchez à améliorer votre performance pour la prochaine fois.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q3" value="c" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous discutez de la partie avec les autres joueurs.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q3" value="b" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous réfléchissez à ce que vous avez appris sur le jeu.</span>
+                                </label>
+                            
+                        </div>
+                    </div>
+                </div><div class="question-card bg-gray-800 rounded-xl p-6 shadow-lg fade-in" style="animation-delay: 0.3s;">
+                    <div class="mb-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-cafoc-yellow text-black font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">4</span>
+                            <h3 class="text-lg font-semibold text-white">Dans un jeu de société, comment réagissez-vous face à une règle peu claire ?</h3>
+                        </div>
+                        <div class="space-y-2">
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q4" value="d" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous utilisez l'ambiguïté pour obtenir un avantage.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q4" value="a" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous cherchez à clarifier la règle pour continuer à jouer efficacement.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q4" value="c" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous en discutez avec les autres joueurs pour arriver à un consensus.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q4" value="b" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous essayez différentes interprétations pour voir comment elles affectent le jeu.</span>
+                                </label>
+                            
+                        </div>
+                    </div>
+                </div><div class="question-card bg-gray-800 rounded-xl p-6 shadow-lg fade-in" style="animation-delay: 0.4s;">
+                    <div class="mb-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-cafoc-yellow text-black font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">5</span>
+                            <h3 class="text-lg font-semibold text-white">Quel type de jeu sur smartphone préférez-vous ?</h3>
+                        </div>
+                        <div class="space-y-2">
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q5" value="a" class="radio-custom" required="">
+                                    <span class="text-gray-300">Un jeu avec des niveaux à compléter et des récompenses à collecter.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q5" value="c" class="radio-custom" required="">
+                                    <span class="text-gray-300">Un jeu qui permet de jouer avec des amis ou de discuter en ligne.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q5" value="d" class="radio-custom" required="">
+                                    <span class="text-gray-300">Un jeu où vous pouvez affronter d'autres joueurs en direct.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q5" value="b" class="radio-custom" required="">
+                                    <span class="text-gray-300">Un jeu avec des énigmes ou des secrets à découvrir.</span>
+                                </label>
+                            
+                        </div>
+                    </div>
+                </div><div class="question-card bg-gray-800 rounded-xl p-6 shadow-lg fade-in" style="animation-delay: 0.5s;">
+                    <div class="mb-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-cafoc-yellow text-black font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">6</span>
+                            <h3 class="text-lg font-semibold text-white">Si vous jouez à un jeu de société en groupe, que faites-vous pendant les temps morts ?</h3>
+                        </div>
+                        <div class="space-y-2">
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q6" value="d" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous observez les autres joueurs pour repérer leurs faiblesses.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q6" value="b" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous observez les détails du jeu ou testez des idées.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q6" value="c" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous discutez avec les autres joueurs.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q6" value="a" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous planifiez votre prochaine action.</span>
+                                </label>
+                            
+                        </div>
+                    </div>
+                </div><div class="question-card bg-gray-800 rounded-xl p-6 shadow-lg fade-in" style="animation-delay: 0.6s;">
+                    <div class="mb-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-cafoc-yellow text-black font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">7</span>
+                            <h3 class="text-lg font-semibold text-white">Comment réagissez-vous si vous perdez une partie ?</h3>
+                        </div>
+                        <div class="space-y-2">
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q7" value="b" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous analysez ce qui s'est passé pour mieux comprendre le jeu.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q7" value="d" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous ressentez de la frustration et cherchez à prendre votre revanche.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q7" value="a" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous êtes motivé pour rejouer et faire mieux.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q7" value="c" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous restez de bonne humeur tant que le moment était agréable.</span>
+                                </label>
+                            
+                        </div>
+                    </div>
+                </div><div class="question-card bg-gray-800 rounded-xl p-6 shadow-lg fade-in" style="animation-delay: 0.7s;">
+                    <div class="mb-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-cafoc-yellow text-black font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">8</span>
+                            <h3 class="text-lg font-semibold text-white">Dans un jeu de société, que trouvez-vous le plus amusant ?</h3>
+                        </div>
+                        <div class="space-y-2">
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q8" value="c" class="radio-custom" required="">
+                                    <span class="text-gray-300">Les interactions et discussions avec les autres joueurs.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q8" value="b" class="radio-custom" required="">
+                                    <span class="text-gray-300">Découvrir des stratégies ou des combinaisons.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q8" value="a" class="radio-custom" required="">
+                                    <span class="text-gray-300">Atteindre les objectifs fixés par le jeu.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q8" value="d" class="radio-custom" required="">
+                                    <span class="text-gray-300">Gagner en surpassant vos adversaires.</span>
+                                </label>
+                            
+                        </div>
+                    </div>
+                </div><div class="question-card bg-gray-800 rounded-xl p-6 shadow-lg fade-in" style="animation-delay: 0.8s;">
+                    <div class="mb-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-cafoc-yellow text-black font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">9</span>
+                            <h3 class="text-lg font-semibold text-white">Si un jeu propose des modes compétitif et coopératif, lequel choisissez-vous ?</h3>
+                        </div>
+                        <div class="space-y-2">
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q9" value="a" class="radio-custom" required="">
+                                    <span class="text-gray-300">Le mode compétitif, pour viser la première place.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q9" value="b" class="radio-custom" required="">
+                                    <span class="text-gray-300">Le mode qui vous permet d'expérimenter le plus de mécaniques du jeu.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q9" value="c" class="radio-custom" required="">
+                                    <span class="text-gray-300">Le mode coopératif, pour jouer et discuter avec les autres.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q9" value="d" class="radio-custom" required="">
+                                    <span class="text-gray-300">Le mode compétitif, pour affronter et battre les autres joueurs.</span>
+                                </label>
+                            
+                        </div>
+                    </div>
+                </div><div class="question-card bg-gray-800 rounded-xl p-6 shadow-lg fade-in" style="animation-delay: 0.9s;">
+                    <div class="mb-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-cafoc-yellow text-black font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">10</span>
+                            <h3 class="text-lg font-semibold text-white">Quand vous jouez à un jeu sur smartphone, que faites-vous en priorité ?</h3>
+                        </div>
+                        <div class="space-y-2">
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q10" value="d" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous cherchez à affronter d'autres joueurs.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q10" value="b" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous explorez toutes les fonctionnalités et options du jeu.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q10" value="c" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous invitez des amis à jouer ou discutez de vos progrès.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q10" value="a" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous cherchez à débloquer tous les niveaux ou obtenir les meilleures récompenses.</span>
+                                </label>
+                            
+                        </div>
+                    </div>
+                </div><div class="question-card bg-gray-800 rounded-xl p-6 shadow-lg fade-in" style="animation-delay: 1s;">
+                    <div class="mb-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-cafoc-yellow text-black font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">11</span>
+                            <h3 class="text-lg font-semibold text-white">Comment décrivez-vous votre style de jeu à vos amis ?</h3>
+                        </div>
+                        <div class="space-y-2">
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q11" value="b" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous aimez expérimenter et découvrir les subtilités du jeu.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q11" value="c" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous jouez pour le plaisir de partager un moment avec les autres.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q11" value="d" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous aimez dominer les autres joueurs.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q11" value="a" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous êtes déterminé et concentré sur la victoire.</span>
+                                </label>
+                            
+                        </div>
+                    </div>
+                </div><div class="question-card bg-gray-800 rounded-xl p-6 shadow-lg fade-in" style="animation-delay: 1.1s;">
+                    <div class="mb-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-cafoc-yellow text-black font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">12</span>
+                            <h3 class="text-lg font-semibold text-white">Si un jeu propose un classement mondial, comment réagissez-vous ?</h3>
+                        </div>
+                        <div class="space-y-2">
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q12" value="b" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous vous intéressez peu au classement, mais cherchez à comprendre comment il fonctionne.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q12" value="d" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous utilisez le classement pour repérer les meilleurs joueurs à défier.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q12" value="a" class="radio-custom" required="">
+                                    <span class="text-gray-300">Vous faites tout pour grimper dans le classement.</span>
+                                </label>
+                            
+                                <label class="option-label">
+                                    <input type="radio" name="q12" value="c" class="radio-custom" required="" checked="checked">
+                                    <span class="text-gray-300">Vous partagez votre classement avec vos amis.</span>
+                                </label>
+                            
+                        </div>
+                    </div>
+                </div></form>
+        
+        <!-- Submit Button -->
+        <div class="text-center mt-8" id="submit-container" style="display: none;">
+            <button type="button" id="submitBtn" class="bg-cafoc-yellow text-black font-bold py-4 px-8 rounded-full hover:bg-yellow-400 transition transform hover:scale-105 shadow-lg">
+                <i class="fas fa-chart-bar mr-2"></i>
+                Découvrir mes résultats
+            </button>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results" class="mt-12" style="display: none;">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Vos résultats</h2>
+                <div class="w-24 h-1 bg-cafoc-yellow mx-auto mb-6"></div>
+                <p class="text-gray-300 max-w-2xl mx-auto">
+                    Voici votre profil de joueur basé sur la typologie 
+de Bartle. Chaque pourcentage indique votre affinité avec chaque type.
+                </p>
+            </div>
+            
+            <div id="results-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"></div>
+            
+            <div class="text-center">
+                <button onclick="location.reload()" class="border-2 border-cafoc-yellow text-white font-bold py-3 px-8 rounded-full hover:bg-yellow-500 hover:bg-opacity-10 transition">
+                    <i class="fas fa-redo mr-2"></i>
+                    Refaire le test
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 px-6 mt-16">
+        <div class="container mx-auto text-center">
+            <div class="border-t border-gray-800 pt-8 text-gray-500">
+                <p>© 2025 Test de positionnement Bartle - Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const questions = [
+            {
+                id: "q1",
+                text: "Quand vous jouez à un jeu de société ou sur smartphone, qu'est-ce qui vous motive le plus ?",
+                options: [
+                    { value: "a", text: "Atteindre les objectifs et obtenir des récompenses.", type: "Achiever" },
+                    { value: "b", text: "Découvrir toutes les possibilités et stratégies du jeu.", type: "Explorer" },
+                    { value: "c", text: "Passer un bon moment avec d'autres joueurs.", type: "Socialiser" },
+                    { value: "d", text: "Surpasser les autres joueurs.", type: "Killer" }
+                ]
+            },
+            {
+                id: "q2",
+                text: "Comment abordez-vous un nouveau jeu de société ou un jeu sur smartphone ?",
+                options: [
+                    { value: "a", text: "Vous vous concentrez sur la manière de gagner rapidement.", type: "Achiever" },
+                    { value: "b", text: "Vous prenez le temps d'explorer toutes les règles et mécaniques.", type: "Explorer" },
+                    { value: "c", text: "Vous appréciez discuter des règles avec les autres joueurs.", type: "Socialiser" },
+                    { value: "d", text: "Vous cherchez immédiatement à identifier vos adversaires.", type: "Killer" }
+                ]
+            },
+            {
+                id: "q3",
+                text: "Que faites-vous si vous gagnez une partie ?",
+                options: [
+                    { value: "a", text: "Vous cherchez à améliorer votre performance pour la prochaine fois.", type: "Achiever" },
+                    { value: "b", text: "Vous réfléchissez à ce que vous avez appris sur le jeu.", type: "Explorer" },
+                    { value: "c", text: "Vous discutez de la partie avec les autres joueurs.", type: "Socialiser" },
+                    { value: "d", text: "Vous savourez le fait d'avoir surpassé vos adversaires.", type: "Killer" }
+                ]
+            },
+            {
+                id: "q4",
+                text: "Dans un jeu de société, comment réagissez-vous face à une règle peu claire ?",
+                options: [
+                    { value: "a", text: "Vous cherchez à clarifier la règle pour continuer à jouer efficacement.", type: "Achiever" },
+                    { value: "b", text: "Vous essayez différentes interprétations pour voir comment elles affectent le jeu.", type: "Explorer" },
+                    { value: "c", text: "Vous en discutez avec les autres joueurs pour arriver à un consensus.", type: "Socialiser" },
+                    { value: "d", text: "Vous utilisez l'ambiguïté pour obtenir un avantage.", type: "Killer" }
+                ]
+            },
+            {
+                id: "q5",
+                text: "Quel type de jeu sur smartphone préférez-vous ?",
+                options: [
+                    { value: "a", text: "Un jeu avec des niveaux à compléter et des récompenses à collecter.", type: "Achiever" },
+                    { value: "b", text: "Un jeu avec des énigmes ou des secrets à découvrir.", type: "Explorer" },
+                    { value: "c", text: "Un jeu qui permet de jouer avec des amis ou de discuter en ligne.", type: "Socialiser" },
+                    { value: "d", text: "Un jeu où vous pouvez affronter d'autres joueurs en direct.", type: "Killer" }
+                ]
+            },
+            {
+                id: "q6",
+                text: "Si vous jouez à un jeu de société en groupe, que faites-vous pendant les temps morts ?",
+                options: [
+                    { value: "a", text: "Vous planifiez votre prochaine action.", type: "Achiever" },
+                    { value: "b", text: "Vous observez les détails du jeu ou testez des idées.", type: "Explorer" },
+                    { value: "c", text: "Vous discutez avec les autres joueurs.", type: "Socialiser" },
+                    { value: "d", text: "Vous observez les autres joueurs pour repérer leurs faiblesses.", type: "Killer" }
+                ]
+            },
+            {
+                id: "q7",
+                text: "Comment réagissez-vous si vous perdez une partie ?",
+                options: [
+                    { value: "a", text: "Vous êtes motivé pour rejouer et faire mieux.", type: "Achiever" },
+                    { value: "b", text: "Vous analysez ce qui s'est passé pour mieux comprendre le jeu.", type: "Explorer" },
+                    { value: "c", text: "Vous restez de bonne humeur tant que le moment était agréable.", type: "Socialiser" },
+                    { value: "d", text: "Vous ressentez de la frustration et cherchez à prendre votre revanche.", type: "Killer" }
+                ]
+            },
+            {
+                id: "q8",
+                text: "Dans un jeu de société, que trouvez-vous le plus amusant ?",
+                options: [
+                    { value: "a", text: "Atteindre les objectifs fixés par le jeu.", type: "Achiever" },
+                    { value: "b", text: "Découvrir des stratégies ou des combinaisons.", type: "Explorer" },
+                    { value: "c", text: "Les interactions et discussions avec les autres joueurs.", type: "Socialiser" },
+                    { value: "d", text: "Gagner en surpassant vos adversaires.", type: "Killer" }
+                ]
+            },
+            {
+                id: "q9",
+                text: "Si un jeu propose des modes compétitif et coopératif, lequel choisissez-vous ?",
+                options: [
+                    { value: "a", text: "Le mode compétitif, pour viser la première place.", type: "Achiever" },
+                    { value: "b", text: "Le mode qui vous permet d'expérimenter le plus de mécaniques du jeu.", type: "Explorer" },
+                    { value: "c", text: "Le mode coopératif, pour jouer et discuter avec les autres.", type: "Socialiser" },
+                    { value: "d", text: "Le mode compétitif, pour affronter et battre les autres joueurs.", type: "Killer" }
+                ]
+            },
+            {
+                id: "q10",
+                text: "Quand vous jouez à un jeu sur smartphone, que faites-vous en priorité ?",
+                options: [
+                    { value: "a", text: "Vous cherchez à débloquer tous les niveaux ou obtenir les meilleures récompenses.", type: "Achiever" },
+                    { value: "b", text: "Vous explorez toutes les fonctionnalités et options du jeu.", type: "Explorer" },
+                    { value: "c", text: "Vous invitez des amis à jouer ou discutez de vos progrès.", type: "Socialiser" },
+                    { value: "d", text: "Vous cherchez à affronter d'autres joueurs.", type: "Killer" }
+                ]
+            },
+            {
+                id: "q11",
+                text: "Comment décrivez-vous votre style de jeu à vos amis ?",
+                options: [
+                    { value: "a", text: "Vous êtes déterminé et concentré sur la victoire.", type: "Achiever" },
+                    { value: "b", text: "Vous aimez expérimenter et découvrir les subtilités du jeu.", type: "Explorer" },
+                    { value: "c", text: "Vous jouez pour le plaisir de partager un moment avec les autres.", type: "Socialiser" },
+                    { value: "d", text: "Vous aimez dominer les autres joueurs.", type: "Killer" }
+                ]
+            },
+            {
+                id: "q12",
+                text: "Si un jeu propose un classement mondial, comment réagissez-vous ?",
+                options: [
+                    { value: "a", text: "Vous faites tout pour grimper dans le classement.", type: "Achiever" },
+                    { value: "b", text: "Vous vous intéressez peu au classement, mais cherchez à comprendre comment il fonctionne.", type: "Explorer" },
+                    { value: "c", text: "Vous partagez votre classement avec vos amis.", type: "Socialiser" },
+                    { value: "d", text: "Vous utilisez le classement pour repérer les meilleurs joueurs à défier.", type: "Killer" }
+                ]
+            }
+        ];
+
+        const playerTypes = {
+            'Achiever': {
+                name: 'Accomplisseurs',
+                icon: 'fa-trophy',
+                color: '#FFD700',
+                description: 'Si vous êtes un Accomplisseur, le jeu de société est pour vous une succession de défis à relever et d\'objectifs à atteindre. Vous prenez plaisir à collectionner les victoires, à remplir toutes les conditions de succès ou à accumuler les éléments rares du jeu, comme les cartes spéciales ou les ressources précieuses. Compléter un plateau, finir une collection ou optimiser votre score sont vos principales motivations. Vous ressentez une grande satisfaction à voir concrètement vos progrès et à comparer vos réussites à celles des autres autour de la table.'
+            },
+            'Explorer': {
+                name: 'Explorateurs',
+                icon: 'fa-compass',
+                color: '#10B981',
+                description: 'En tant qu\'Explorateur, vous êtes attiré par la découverte de toutes les facettes du jeu de société. Vous aimez lire les règles en détail, tester différentes stratégies, chercher des variantes ou dénicher des subtilités dans la mécanique. Votre plaisir vient du fait d\'expérimenter, de comprendre le fonctionnement du jeu dans ses moindres détails et de révéler des secrets ou des combinaisons inattendues. Pour vous, chaque partie est une occasion d\'apprendre et d\'approfondir votre compréhension du jeu, plus que de gagner à tout prix.'
+            },
+            'Socialiser': {
+                name: 'Socialisateurs',
+                icon: 'fa-users',
+                color: '#3B82F6',
+                description: 'Si vous êtes un Socialisateur, ce qui compte avant tout, c\'est le plaisir de partager un moment convivial avec les autres joueurs. Vous privilégiez les jeux favorisant la coopération, la discussion, l\'échange ou la négociation. L\'ambiance, les rires et les interactions priment sur le résultat final. Vous aimez créer des alliances, raconter des anecdotes ou simplement profiter de la compagnie autour de la table, quitte à parfois oublier l\'objectif du jeu lui-même.'
+            },
+            'Killer': {
+                name: 'Compétiteurs',
+                icon: 'fa-sword',
+                color: '#EF4444',
+                description: 'En tant que Compétiteur, votre motivation principale est la confrontation directe avec les autres joueurs. Vous aimez les jeux où il est possible de bloquer, d\'affronter ou de surpasser vos adversaires. La victoire a pour vous une saveur particulière lorsqu\'elle est remportée face à d\'autres, surtout si elle passe par des coups d\'éclat, des stratégies agressives ou des retournements de situation. Vous appréciez les jeux où la compétition est vive et où chaque action peut influencer le sort des autres autour de la table.'
+            }
+        };
+
+        // Fonction pour mélanger un tableau
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Générer le formulaire
+        function generateForm() {
+            const form = document.getElementById('quizForm');
+            
+            questions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question-card bg-gray-800 rounded-xl p-6 shadow-lg fade-in';
+                questionDiv.style.animationDelay = `${index * 0.1}s`;
+                
+                questionDiv.innerHTML = `
+                    <div class="mb-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-cafoc-yellow text-black font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">${index + 1}</span>
+                            <h3 class="text-lg font-semibold text-white">${question.text}</h3>
+                        </div>
+                        <div class="space-y-2">
+                            ${shuffledOptions.map(option => `
+                                <label class="option-label">
+                                    <input type="radio" name="${question.id}" value="${option.value}" class="radio-custom" required>
+                                    <span class="text-gray-300">${option.text}</span>
+                                </label>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                form.appendChild(questionDiv);
+            });
+        }
+
+        // Mettre à jour la barre de progression
+        function updateProgress() {
+            const totalQuestions = questions.length;
+            let answeredQuestions = 0;
+            
+            questions.forEach(question => {
+                const checked = document.querySelector(`input[name="${question.id}"]:checked`);
+                if (checked) answeredQuestions++;
+            });
+            
+            const percentage = (answeredQuestions / totalQuestions) * 100;
+            document.getElementById('progress-bar').style.width = percentage + '%';
+            document.getElementById('progress-text').textContent = `${answeredQuestions}/${totalQuestions}`;
+            
+            // Afficher le bouton de soumission si toutes les questions sont répondues
+            if (answeredQuestions === totalQuestions) {
+                document.getElementById('submit-container').style.display = 'block';
+            } else {
+                document.getElementById('submit-container').style.display = 'none';
+            }
+        }
+
+        // Calculer et afficher les résultats
+        function calculateResults() {
+            const answers = {};
+            let allAnswered = true;
+
+            questions.forEach(question => {
+                const selected = document.querySelector(`input[name="${question.id}"]:checked`);
+                if (selected) {
+                    answers[question.id] = selected.value;
+                } else {
+                    allAnswered = false;
+                }
+            });
+
+            if (!allAnswered) {
+                alert('Veuillez répondre à toutes les questions avant de voir les résultats.');
+                return;
+            }
+
+            const counts = { Achiever: 0, Explorer: 0, Socialiser: 0, Killer: 0 };
+            questions.forEach(question => {
+                const selectedOption = question.options.find(opt => opt.value === answers[question.id]);
+                if (selectedOption) {
+                    counts[selectedOption.type]++;
+                }
+            });
+
+            const total = 12;
+            const percentages = {
+                Achiever: (counts.Achiever / total * 100).toFixed(0),
+                Explorer: (counts.Explorer / total * 100).toFixed(0),
+                Socialiser: (counts.Socialiser / total * 100).toFixed(0),
+                Killer: (counts.Killer / total * 100).toFixed(0)
+            };
+
+            displayResults(percentages);
+        }
+
+        // Afficher les résultats
+        function displayResults(percentages) {
+            const resultsGrid = document.getElementById('results-grid');
+            resultsGrid.innerHTML = '';
+
+            // Trier les types par pourcentage décroissant
+            const sortedTypes = Object.entries(percentages)
+                .sort(([,a], [,b]) => b - a)
+                .map(([type, percentage]) => ({ type, percentage }));
+
+            sortedTypes.forEach((result, index) => {
+                const typeInfo = playerTypes[result.type];
+                const delay = index * 0.1;
+                
+                const resultCard = document.createElement('div');
+                resultCard.className = 'result-card rounded-xl p-6 fade-in';
+                resultCard.style.animationDelay = `${delay}s`;
+                
+                resultCard.innerHTML = `
+                    <div class="flex items-center mb-4">
+                        <div class="percentage-circle mr-6" style="--percentage: ${result.percentage * 3.6}deg;">
+                            <div class="percentage-text">${result.percentage}%</div>
+                        </div>
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <i class="fas ${typeInfo.icon} text-2xl mr-3" style="color: ${typeInfo.color};"></i>
+                                <h3 class="text-xl font-bold text-white">${typeInfo.name}</h3>
+                            </div>
+                            ${index === 0 ? '<span class="bg-cafoc-yellow text-black px-3 py-1 rounded-full text-sm font-bold">Profil dominant</span>' : ''}
+                        </div>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed">${typeInfo.description}</p>
+                `;
+                
+                resultsGrid.appendChild(resultCard);
+            });
+
+            // Afficher la section des résultats
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Initialisation
+        generateForm();
+
+        // Ajouter les événements
+        document.addEventListener('change', function(e) {
+            if (e.target.type === 'radio') {
+                updateProgress();
+            }
+        });
+
+        document.getElementById('submitBtn').addEventListener('click', calculateResults);
+
+        // Observer pour les animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observer tous les éléments avec fade-in
+        setTimeout(() => {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        }, 100);
+    </script>
+
+</body></html>
